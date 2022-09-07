@@ -1,7 +1,10 @@
+require("dotenv").config()
 const mongoose = require('mongoose')
 
+const DB_URI = process.env.DB_URI
+
 // mongoose.connect('mongodb://localhost:27017/myapp'); DESDE la documentacion
-const DB_URI = `mongodb://localhost:27017/advance`
+// const DB_URI = `mongodb://localhost:27017/advance`
 
 module.exports = () => {
     const connect = () => {

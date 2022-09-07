@@ -5,11 +5,8 @@ const controller = require('../controllers/user.js')
 
 const router = express.Router()
 
-const path = 'user'
+// const path = 'user'
 
-/**
- * Ruta: /user GET
- */
 // router.get(
 //     `${path}/`,
     // Esta logica ↓ hacerla desde otra dependencia
@@ -18,12 +15,19 @@ const path = 'user'
     // }
 // )
 
+// router.get(
+//     `/${path}`, controller.getData // Con la configuracion de index, ya no es necesario dejar el path
+// )
+
+/**
+ * Ruta: /user GET
+ */
 router.get(
-    `/${path}`, controller.getData
+    `/`, controller.getData
 )
 
 router.post(
-    `/${path}`, controller.inserData
+    `/`, controller.inserData
 )
 
 // router.post(
@@ -31,11 +35,11 @@ router.post(
 // )
 
 router.put(
-    `/${path}/:id`, controller.updateSingle
+    `/:id`, controller.updateSingle
 )
 
 router.delete(
-    `/${path}/:id`, controller.deleteSingle
+    `/:id`, controller.deleteSingle
 )
 
 module.exports = router
