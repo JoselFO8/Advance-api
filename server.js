@@ -35,7 +35,7 @@ app.use( // for parsing appication/x-www-form-urlencoded
         extended: true
     })
 )
-// app.use(express.json())
+app.use(express.json())
 app.use("/", require("./app/routes")) // Muestra index
 // app.use(userRouters)
 // app.use(itemsRouters)

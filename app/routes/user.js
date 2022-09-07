@@ -1,5 +1,7 @@
 const express = require('express')
 
+const {ValidatorInserData} = require("../validators/user.js")
+
 // Exporta todos los metodos desde controllers/user 
 const controller = require('../controllers/user.js')
 
@@ -27,12 +29,12 @@ router.get(
 )
 
 router.post(
-    `/`, controller.inserData
+    `/`, ValidatorInserData, controller.inserData
 )
 
-// router.post(
-//     `/${path}`, controller.inserManyData
-// )
+router.post(
+    `/bulk`, ValidatorInserData, controller.inserManyData
+)
 
 router.put(
     `/:id`, controller.updateSingle

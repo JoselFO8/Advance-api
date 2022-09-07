@@ -20,10 +20,10 @@ const parseJSON = (data) => {
 /**
  * Obtener DATA de usuarios
  */
-exports.getData = (req, res) => {
+exports.getData = async (req, res) => {
     // Se le dice a modelo que traiga de colecciones '{}' los documentos que encuentre
     // model.find({ // email: 'correo@gmail.com' // Aqui se puede poner las condiciones => Queryes
-    userModel.paginate({
+    const data = await userModel.paginate({
 
     }, options, (error, docs) => {
         res.send({
@@ -32,34 +32,43 @@ exports.getData = (req, res) => {
     })
 }
 
+
 /**
  * Insertar DATA de usuarios
  */
-exports.inserData = (req, res) => {
-    const data = req.body
-    console.log('typeof', typeof data, data);
-    userModel.create(data, (error, docs) => { // Crear el documento en la db
-        if(error) {
-            res.send({ error: 'Error' }, 422)
-        }
-        res.send({ data: docs })
-    })
+// exports.inserData = async (req, res) => {
+//     const dataUser = req.body
+//     console.log('typeof', typeof dataUser, dataUser);
+//     const data = await userModel.create(dataUser, (error, docs) => { // Crear el documento en la db
+//         if(error) {
+//             res.send({ error: 'Error' }, 422)
+//         }
+//         res.send({ data: docs })
+//     })
+// }
+
+exports.inserData = async (req, res) => {
+    const dataUser = req.body
+    // const data = await userModel.create(dataUser, (error, docs) => { // Crear el documento en la db
+    //     if(error) {
+    //         res.send({ error: 'Error' }, 422)
+    //     }
+    //     res.send({ data: docs })
+    // })
+    const data = await userModel.create(dataUser)
+    res.send({data})
 }
 
 /**
  * Insertar muchos docs de usuarios
  */
- exports.inserManyData = (req, res) => {
-     const data = req.body
-     console.log('Esta entrando', data);
-     console.log('Prueba parcer', parseJSON(data));
-     const array = parseJSON(data)
-    // const prueba = parse
-    userModel.insertMany(data, (error, docs) => { // Crear el documento en la db
+ exports.inserManyData = async (req, res) => {
+    const dataUsers = req.body
+    const data = await userModel.insertMany(dataUsers, (error, docs) => { // Crear el documento en la db
         if(error) {
             res.send({ error: 'Error' }, 422)
         }
-        res.send({ dataJLF: docs })
+        res.send({ data: docs })
     })
 }
 
