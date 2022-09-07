@@ -1,0 +1,5 @@
+El equivalente a helpers
+
+Cambiar mayusculas a minusculas
+Remplazar ñ's 
+etc.
