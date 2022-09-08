@@ -1,3 +1,4 @@
+const cors = require("cors")
 require("dotenv").config()
 
 const express = require('express')
@@ -11,6 +12,10 @@ const app = express()
 
 const port = process.env.PORT || 3001
 
+const whiteList = [
+    'http://localhost:4200'
+]
+
 // Como ya se creo la primer ruta, no es necesario hacer uso de esta
 // app.get('/', (req, res) => {
 //     res.send({
@@ -23,6 +28,8 @@ const port = process.env.PORT || 3001
 // const uploadRouters =require('./app/routes/upload.js')
 
 // App, use las rutas q se exportan desde este archivo
+// app.use(cors()) // Para dar permisos a cualquier URL
+app.use(cors({origin: whiteList})) // Para dar permisos a algunas URL's
 app.use(morgan('dev'));
 app.use( // for parsing json
     bodyParser.json({

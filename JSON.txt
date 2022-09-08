@@ -1,0 +1,67 @@
+[
+        {
+          "id": 1,
+          "name": "Nombre prueba",
+          "age": 25,
+          "description": "Descripcion de prueba",
+          "avatar": "https://img.freepik.com/foto-gratis/retrato-estudio-hombre-moreno-confianza_1187-5799.jpg?w=2000",
+          "gender": "M"
+        }, {
+          "id": 2,
+          "name": "Nombre prueba",
+          "age": 25,
+          "description": "Descripcion de prueba",
+          "avatar": "https://img.freepik.com/foto-gratis/retrato-estudio-hombre-moreno-confianza_1187-5799.jpg?w=2000",
+          "gender": "M"
+        }, {
+          "id": 3,
+          "name": "Nombre prueba",
+          "age": 25,
+          "description": "Descripcion de prueba",
+          "avatar": "https://img.freepik.com/foto-gratis/retrato-estudio-hombre-moreno-confianza_1187-5799.jpg?w=2000",
+          "gender": "F"
+        }, {
+          "id": 4,
+          "name": "Nombre prueba",
+          "age": 25,
+          "description": "Descripcion de prueba",
+          "avatar": "https://img.freepik.com/foto-gratis/retrato-estudio-hombre-moreno-confianza_1187-5799.jpg?w=2000",
+          "work": "CEO",
+          "gender": "M"
+        }, {
+          "id": 5,
+          "name": "Nombre prueba",
+          "age": 25,
+          "description": "Descripcion de prueba",
+          "avatar": "https://img.freepik.com/foto-gratis/retrato-estudio-hombre-moreno-confianza_1187-5799.jpg?w=2000",
+          "gender": ""
+        } 
+]
+
+-----------------------------------------------
+
+[
+  {
+      "name": "Pablox3",
+      "email": "pablox3@gmail.com"
+  },
+  {
+      "name": "Juanx3",
+      "email": "juanx3@gmail.com"
+  },
+  {
+      "name": "Pedrxo3",
+      "email": "pedrox3@gmail.com"
+  },
+  {
+      "name": "Juana3",
+      "email": "juana3@gmail.com"
+  }
+]
+
+-----------------------------------------------
+
+{
+      "name": "name8",
+      "email": "name8gmail.com"
+}

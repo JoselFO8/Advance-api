@@ -1,9 +1,9 @@
 const { default: mongoose } = require('mongoose')
-const userModel = require('../models/user.js')
+const userModel = require('../models/users.js')
 
 const options = {
     page: 1,
-    limit: 3
+    limit: 6
 }
 
 /**
@@ -27,9 +27,23 @@ exports.getData = async (req, res) => {
 
     }, options, (error, docs) => {
         res.send({
-            docsJLF: docs
+            users: docs.docs
         })
     })
+}
+
+exports.getDataByID = async (req, res) => {
+    const {id} = req.params
+    // console.log('id', id);
+    // const data = await userModel.find({
+        // name: id
+    // const data = await userModel.find({_id: id})
+    const data = await userModel.findById(id)
+    res.send({user: data})
+    // .exec()
+    // const data = await userModel.find({ name: id });
+    // console.log(data);
+    // data.map(doc => doc.name).sort()
 }
 
 

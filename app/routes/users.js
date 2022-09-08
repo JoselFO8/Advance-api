@@ -1,9 +1,9 @@
 const express = require('express')
 
-const {ValidatorInserData} = require("../validators/user.js")
+const {ValidatorInserData} = require("../validators/users.js")
 
 // Exporta todos los metodos desde controllers/user 
-const controller = require('../controllers/user.js')
+const controller = require('../controllers/users.js')
 
 const router = express.Router()
 
@@ -28,12 +28,19 @@ router.get(
     `/`, controller.getData
 )
 
+/**
+ * Ruta: /user GET
+ */
+ router.get(
+    `/:id`, controller.getDataByID
+)
+
 router.post(
     `/`, ValidatorInserData, controller.inserData
 )
 
 router.post(
-    `/bulk`, ValidatorInserData, controller.inserManyData
+    `/bulk`, controller.inserManyData
 )
 
 router.put(
