@@ -1,5 +1,5 @@
 const { check } = require("express-validator");
-const validateResults = require("../../utils/handleValidators.js")
+const validateResults = require("../utils/handleValidators.js")
 
 // Midelware - Validacion de datos
 

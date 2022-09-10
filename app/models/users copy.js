@@ -6,21 +6,27 @@ const UserScheme = new mongoose.Schema(
         name: {
             type: String
         },
+        // email: {
+            //     type: String,
+            //     unique: true, // Para que no se repita
+            //     required: true, // Debe enviarse obligatoriamente
+            // }
         age: {
             type: Number
         },
-        email: {
-            type: String,
-            unique: true
+        description: {
+            type: String
         },
-        password: {
+        avatar: {
             type: String,
-            select: false
+            default: 'https://img.freepik.com/foto-gratis/retrato-estudio-hombre-moreno-confianza_1187-5799.jpg?w=2000'
         },
-        role: {
-            type: ["user, admin"],
-            default: "user"
-        },    
+        gender: {
+            type: String
+        },
+        work: {
+            type: String
+        }    
     },
     {
         versionKey: false,  // deshabilitar el __v que envia mongo por defecto 
