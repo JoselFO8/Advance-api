@@ -1,8 +1,8 @@
 const { handleHttpError } = require("../utils/handleError")
 const { verifyToken } = require("../utils/handleJwt")
-const { userModel } = require("../models/users")
+const userModel = require("../models/users")
 
-const authMiddelware = async (req, res, next) => {
+const authMiddleware = async (req, res, next) => {
     try {
         // Se debe capturar el token
         if(!req.headers.authorization) { // Si en la peticion, no existe el token
@@ -10,11 +10,10 @@ const authMiddelware = async (req, res, next) => {
         }
 
         const token = req.headers.authorization.split(' ').pop()
-        console.log(token)
 
         // Verificacion del payload JWT
         const dataToken = await verifyToken(token)
-        
+
         if(!dataToken._id) {
             handleHttpError(res, "NOT_PAYLOAD_DATA", 401)
             return
@@ -23,8 +22,9 @@ const authMiddelware = async (req, res, next) => {
         const query = {
             _id: dataToken._id
         }
-        console.log(query)
+        
         const user = await userModel.findOne(query)
+        // NOTA: Se inyecta al req para que desde el controller se pase el argumento 
         req.user = user
 
         next()
@@ -34,4 +34,4 @@ const authMiddelware = async (req, res, next) => {
     }
 }
 
-module.exports = authMiddelware
+module.exports = authMiddleware
