@@ -44,6 +44,11 @@ exports.getAllUsers = async (req, res) => {
     }
 }
 
+/**
+ * Obtener un usuario por su id
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.getUserByID = async (req, res) => {
     try {
         const {id} = req.params

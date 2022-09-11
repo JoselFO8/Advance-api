@@ -6,6 +6,7 @@ const { registerControl, loginControl} = require("../controllers/auth.js");
 const authMiddleware = require("../middleware/session.js");
 
 const { getAllUsers } = require("../controllers/users.js");
+const checkRol = require("../middleware/rol.js");
 
 /**
  * Crear un registro
@@ -17,6 +18,11 @@ router.post("/register", validatorRegister, registerControl)
  */
 router.post("/login", validatorLogin, loginControl); // Pendiente midelwares
 
-router.get('/users', authMiddleware, getAllUsers)
+router.get(
+    '/users',
+    authMiddleware,
+    checkRol(["admin", "manager"]),
+    getAllUsers
+)
 
 module.exports = router;

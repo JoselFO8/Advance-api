@@ -5,29 +5,17 @@ const {ValidatorInserData} = require("../validators/users.js")
 // Exporta todos los metodos desde controllers/user 
 const controller = require('../controllers/users.js')
 const authMiddleware = require('../middleware/session.js')
+const checkRol = require('../middleware/rol.js')
 
 const router = express.Router()
-
-// const path = 'user'
-
-// router.get(
-//     `${path}/`,
-    // Esta logica ↓ hacerla desde otra dependencia
-    // (req, res) => {
-    //     res.send({a: 1})    
-    // }
-// )
-
-// router.get(
-//     `/${path}`, controller.getData // Con la configuracion de index, ya no es necesario dejar el path
-// )
 
 /**
  * Ruta: /user GET
  */
 router.get(
     `/`, 
-    authMiddleware, 
+    authMiddleware,
+    checkRol(["admin", "manager"]), // Si o si agregar despues de middleware de authorization
     controller.getAllUsers
 )
 
@@ -35,7 +23,8 @@ router.get(
  * Ruta: /user GET
  */
  router.get(
-    `/:id`, 
+    `/:id`,
+    authMiddleware, 
     controller.getUserByID
 )
 
@@ -44,6 +33,7 @@ router.get(
  */
 router.post(
     `/`,
+    authMiddleware,
     ValidatorInserData, 
     controller.createUser
 )
@@ -53,6 +43,7 @@ router.post(
  */
 router.post(
     `/bulk`,
+    authMiddleware,
     controller.createManyUsers
 )
 
@@ -61,6 +52,7 @@ router.post(
  */
 router.put(
     `/:id`,
+    authMiddleware,
     controller.updateUser
 )
 
@@ -69,6 +61,7 @@ router.put(
  */
 router.delete(
     `/:id`, 
+    authMiddleware,
     controller.deleteUser
 )
 
