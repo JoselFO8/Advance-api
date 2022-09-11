@@ -4,6 +4,7 @@ const {ValidatorInserData} = require("../validators/users.js")
 
 // Exporta todos los metodos desde controllers/user 
 const controller = require('../controllers/users.js')
+const authMiddelware = require('../middleware/session.js')
 
 const router = express.Router()
 
@@ -24,9 +25,7 @@ const router = express.Router()
 /**
  * Ruta: /user GET
  */
-router.get(
-    `/`, controller.getData
-)
+router.get(`/`, authMiddelware, controller.getData)
 
 /**
  * Ruta: /user GET
