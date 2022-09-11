@@ -25,29 +25,51 @@ const router = express.Router()
 /**
  * Ruta: /user GET
  */
-router.get(`/`, authMiddleware, controller.getData)
+router.get(
+    `/`, 
+    authMiddleware, 
+    controller.getAllUsers
+)
 
 /**
  * Ruta: /user GET
  */
  router.get(
-    `/:id`, controller.getDataByID
+    `/:id`, 
+    controller.getUserByID
 )
 
+/**
+ * Ruta: /user POST
+ */
 router.post(
-    `/`, ValidatorInserData, controller.inserData
+    `/`,
+    ValidatorInserData, 
+    controller.createUser
 )
 
+/**
+ * Ruta: /user/bulk POST
+ */
 router.post(
-    `/bulk`, controller.inserManyData
+    `/bulk`,
+    controller.createManyUsers
 )
 
+/**
+ * Ruta: /user/:id PUT
+ */
 router.put(
-    `/:id`, controller.updateUser
+    `/:id`,
+    controller.updateUser
 )
 
+/**
+ * Ruta: /user/:id DELETE
+ */
 router.delete(
-    `/:id`, controller.deleteUser
+    `/:id`, 
+    controller.deleteUser
 )
 
 module.exports = router

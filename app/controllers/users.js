@@ -14,22 +14,24 @@ const parseId = (id) => {
     return mongoose.Types.ObjectId(id)
 }
 
+/**
+ * Parsear JSON pasando la data a parsear
+ * @param {*} data 
+ * @returns 
+ */
 const parseJSON = (data) => {
     return mongoose.Types.Array(data)
 }
 
 /**
- * Obtener DATA de usuarios
+ * Obtener DATA de todos los usuarios
+ * @param {*} req 
+ * @param {*} res 
  */
-exports.getData = async (req, res) => {
-    // Se le dice a modelo que traiga de colecciones '{}' los documentos que encuentre
-    // model.find({ // email: 'correo@gmail.com' // Aqui se puede poner las condiciones => Queryes
-    
+exports.getAllUsers = async (req, res) => {    
     try {
         // NOTA: Se inyectó el user a req desde middleware/sesion
         const user = req.user
-        // const data = await userModel.find({})
-        // res.send({data, user})
 
         const data = await userModel.paginate({}, options, (error, docs) => {
             res.send({
@@ -42,7 +44,7 @@ exports.getData = async (req, res) => {
     }
 }
 
-exports.getDataByID = async (req, res) => {
+exports.getUserByID = async (req, res) => {
     try {
         const {id} = req.params
         const data = await userModel.findById(id)
@@ -57,7 +59,7 @@ exports.getDataByID = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-exports.inserData = async (req, res) => {
+exports.createUser = async (req, res) => {
     try {
         const dataUser = req.body
         const data = await userModel.create(dataUser)
@@ -72,7 +74,7 @@ exports.inserData = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
- exports.inserManyData = async (req, res) => {
+ exports.createManyUsers = async (req, res) => {
     try {
         const dataUsers = req.body
         const data = await userModel.insertMany(dataUsers, (error, docs) => { // Crear el documento en la db

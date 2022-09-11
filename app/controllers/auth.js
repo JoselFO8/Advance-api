@@ -5,23 +5,39 @@ const userModel = require("../models/users")
 const { tokenSign } = require("../utils/handleJwt")
 const { handleHttpError } = require("../utils/handleError")
 
-
+/**
+ * Controlador encargado de registrar un usuario
+ * @param {*} req 
+ * @param {*} res 
+ */
 const registerControl = async (req, res) => {
-    req = matchedData(req)
-    const password = await encrypt (req.password)
-    const body = {...req, password} //reemplazar el password por el encriptado
-    const dataUser = await userModel.create(body)
-    dataUser.set("password", undefined, {strict: false})
+    try {
+        req = matchedData(req)
+        const password = await encrypt (req.password)
+        const body = {...req, password} //reemplazar el password por el encriptado
+        const dataUser = await userModel.create(body)
+        dataUser.set("password", undefined, {strict: false})
 
-    // JWT
-    const data = {
-        token: await tokenSign(dataUser),
-        user: dataUser
+        // JWT
+        const data = {
+            token: await tokenSign(dataUser),
+            user: dataUser
+        }
+        res.status(201)
+        res.send({data:data})
+
+    } catch (error) {
+        handleHttpError(res, "ERROR_REGISTER_USER")
     }
-
-    res.send({data:data})
+    
 }
 
+/**
+ * Login de usuario
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 const loginControl = async (req, res) => {
     try {
         req = matchedData(req)
@@ -54,14 +70,6 @@ const loginControl = async (req, res) => {
     } catch (error) {
         handleHttpError(res, "ERROR_LOGIN_USER")
     }
-    
-    // const password = await encrypt (req.password)
-    // const body = {...req, password} //reemplazar el password por el encriptado
-    // const dataUser = await userModel.create(body)
-    
-
-    
-    
 }
 
 module.exports = { registerControl, loginControl }
