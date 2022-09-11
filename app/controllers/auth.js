@@ -65,7 +65,11 @@ const loginControl = async (req, res) => {
             user: user
         }
 
-        res.send({data:data})
+        res.send({
+            data:data,
+            error: false,
+            msg: "Success Login",
+        })
 
     } catch (error) {
         handleHttpError(res, "ERROR_LOGIN_USER")
