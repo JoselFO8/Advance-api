@@ -1,6 +1,9 @@
 const { default: mongoose } = require('mongoose')
 const multer = require('multer')
 const uploadModel = require('../models/upload.js')
+const { handleHttpError } = require('../utils/handleError.js')
+
+// Pruebas Multer - Subida de archivos
 
 const storage = multer.diskStorage({
     destination: function(req, res, cb) {
@@ -17,24 +20,37 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage})
 exports.upload = upload.single('myFileJLF')
 
-
+/**
+ * Tomar todos los archivos existentes en storage 
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.getFile = (req, res) => {
-    uploadModel.find(
-        {},
-        (error, docs) => {
-            res.send({
-                docsJLF: docs
-            })
-        }
-    )
+    try {
+        uploadModel.find(
+            {},
+            (error, docs) => {
+                res.send({
+                    docsJLF: docs
+                })
+            }
+        )   
+    } catch (error) {
+        handleHttpError(res, "ERROR_GET_FILE")
+    }
 }
 
 /**
  * Subir un archivo a la db 
+ * @param {*} req 
+ * @param {*} res 
  */
 exports.uploadFile = (req, res) => {
-    res.send({
-        data: 'Archivo enviado'
-    })
-        
+    try {
+        res.send({
+            data: 'Archivo enviado'
+        })
+    } catch (error) {
+     handleHttpError(res, "ERROR_UPLOAD_FILE")   
+    }
 }
