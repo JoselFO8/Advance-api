@@ -1,8 +1,17 @@
 const mongoose = require('mongoose')
 
-const UploadScheme = new mongoose.Schema(
+const VideoScheme = new mongoose.Schema(
     {
-        name: {
+        title: {
+            type: String
+        },
+        description: {
+            type: String
+        },
+        videoURL: {
+            type: String
+        },
+        public_id: {
             type: String
         },
     },
@@ -13,4 +22,4 @@ const UploadScheme = new mongoose.Schema(
 )
 
 // al igual que en MySQL, al modelo se le debe poner nombre, en este caso 'user'
-module.exports = mongoose.model('upload', UploadScheme)
+module.exports = mongoose.model('video', VideoScheme)
