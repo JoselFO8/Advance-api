@@ -1,4 +1,4 @@
-const handleHttpError = (res, message = "El servidor ha podido ser contactado", code = 403) => {
+const handleHttpError = (res, message = "El servidor no ha podido ser contactado", code = 403) => {
     res.status(code);
     res.send({
       error: true,

@@ -4,7 +4,6 @@ const uploadModel = require('../models/upload.js')
 const { handleHttpError } = require('../utils/handleError.js')
 
 // Pruebas Multer - Subida de archivos
-
 const storage = multer.diskStorage({
     destination: function(req, res, cb) {
         cb(null, 'storage') // va a guardar todos nuestros archivos en una carpeta que se llama 'uploads'
@@ -17,7 +16,7 @@ const storage = multer.diskStorage({
 })
 
 // Ahora hay que decirle a la ruta que use esta const
-const upload = multer({storage: storage})
+const upload = multer({storage})
 exports.upload = upload.single('myFileJLF')
 
 /**

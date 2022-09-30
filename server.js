@@ -7,28 +7,17 @@ const bodyParser = require('body-parser')
 
 const initDB = require('./config/db_mongo.js')
 
-
+// Initializations
 const app = express()
 
+// Settings
 const port = process.env.PORT || 3001
 
 const whiteList = [
     'http://localhost:4200'
 ]
 
-// Como ya se creo la primer ruta, no es necesario hacer uso de esta
-// app.get('/', (req, res) => {
-//     res.send({
-//         data: 'Respuesta de prueba'
-//     })
-// })
-
-// const userRouters =require('./app/routes/user.js')
-// const itemsRouters =require('./app/routes/items.js')
-// const uploadRouters =require('./app/routes/upload.js')
-
-// App, use las rutas q se exportan desde este archivo
-// app.use(cors()) // Para dar permisos a cualquier URL
+// Midlewares
 app.use(cors({origin: whiteList})) // Para dar permisos a algunas URL's
 app.use(morgan('dev'));
 app.use( // for parsing json
@@ -44,10 +33,8 @@ app.use( // for parsing appication/x-www-form-urlencoded
 )
 app.use(express.json())
 app.use("/", require("./app/routes")) // Muestra index
-// app.use(userRouters)
-// app.use(itemsRouters)
-// app.use(uploadRouters)
 
+// Start the server
 app.listen(port, () => {
     console.log(`La aplicacion esta corriendo en el puerto ${port}`);
 })
