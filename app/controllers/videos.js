@@ -11,15 +11,12 @@ const cloudinary = require("cloudinary")
 const storage = multer.diskStorage({
     destination: path.join(__dirname, 'storage/uploads'),
     filename: (req, file, cb) => { // El nombre sera el propiio del archivo + la fecha, para evitar que se reemplace
-        console.log(file);
-        // cb(null, file.fieldname + '-' + Date.now())
         // cb(null, `${Date.now()}-${file.originalname}`)
         cb(null, `${Date.now()}${path.extname(file.originalname)}`)
     }
-    
 })
 const upload = multer({storage})
-exports.upload = upload.single('videoFile')
+exports.upload = upload.single('thisFile')
 
 
 // Cloudinary
@@ -35,18 +32,12 @@ cloudinary.config({
  * @param {*} req 
  * @param {*} res 
  */
-exports.getFiles = (req, res) => {
+exports.getFiles = async (req, res) => {
     try {
-        // videoModel.find(
-        //     {},
-        //     (error, docs) => {
-        //         res.send({
-        //             docsJLF: docs
-        //         })
-        //     }
-        // ) 
-        res.render('upload')  
+        const videos = await videoModel.find() 
+        res.status(200).send(videos)  
     } catch (error) {
+        console.log(error);
         handleHttpError(res, "ERROR_GET_FILES")
     }
 }
@@ -58,12 +49,17 @@ exports.getFiles = (req, res) => {
  */
 exports.uploadFile = async (req, res) => {
     const { title, description} = req.body
-    console.log('req_file', req.file);
-    console.log('req_body', req.body);
-    // Guardando video en Cloudinary // Videos superiores a 100 mb requieren metodo .upload_large
+    const file = req.file
+    console.log('file', file);
+    
+    // Guardando video en Cloudinary // Videos superiores a 100 mb requieren metodo .upload_large // Luego agregar img tambien
     try {
-        const result = await cloudinary.v2.uploader.upload_large(req.file.path)
-        // console.log(result);
+        // const result = await cloudinary.v2.uploader.upload_large(req.file.path)
+        const result = await cloudinary.v2.uploader.upload(
+            req.file.path,
+            { resource_type: "video", chunk_size: 40000000 }
+        )
+        console.log({result});
         const newVideo = new videoModel({
             title, 
             description, 
@@ -71,18 +67,14 @@ exports.uploadFile = async (req, res) => {
             public_id: result.public_id
         })
         await newVideo.save()
-        console.log({newVideo});
+        // console.log({newVideo});
         await fs.unlink(req.file.path)
         res.send({
             data: 'Archivo enviado'
         })
     } catch (error) {
-        console.log(error);
         handleHttpError(res, "ERROR_UPLOAD_FILE")   
     }
-    // res.send({
-    //     data: 'Archivo enviado'
-    // })
 }
 
 exports.getFileById = (req, res) => {
