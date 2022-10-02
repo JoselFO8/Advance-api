@@ -35,7 +35,7 @@ cloudinary.config({
 exports.getFiles = async (req, res) => {
     try {
         const videos = await videoModel.find() 
-        res.status(200).send(videos)  
+        res.status(200).send({videos})  
     } catch (error) {
         console.log(error);
         handleHttpError(res, "ERROR_GET_FILES")
