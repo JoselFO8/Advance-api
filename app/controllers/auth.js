@@ -21,7 +21,7 @@ const registerControl = async (req, res) => {
         // JWT
         const data = {
             token: await tokenSign(dataUser),
-            user: dataUser
+            users: dataUser
         }
         res.status(201)
         res.send({data:data})
