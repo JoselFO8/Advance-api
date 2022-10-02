@@ -2,11 +2,37 @@ const mongoose = require('mongoose')
 
 const VideoScheme = new mongoose.Schema(
     {
+        sampleImage: {
+            type: String,
+            default: 'https://i.postimg.cc/GtkHjSVq/Kids-4.jpg'
+        },
+        // video: { videoUrl ver abajo
+        //     type: String
+        // },
         title: {
             type: String
         },
         description: {
             type: String
+        },
+        chanel: {
+            type: String
+        },
+        views: {
+            type: Number,
+            default: 0
+        },
+        date: {
+            type: String
+        },
+        visibility: {
+            type: String,
+            // enum: 'public' | 'private',
+            default: 'public'
+        },
+        comments: {
+            type: Array,
+            default: []
         },
         videoURL: {
             type: String

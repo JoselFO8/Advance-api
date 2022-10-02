@@ -19,7 +19,7 @@ module.exports = () => {
             },
             (error) => {
                 if(error) {
-                    console.log('DB: ERROR!!')
+                    console.log('DB: ERROR!!', error)
                 }
                 else {
                     console.log('Conexion correcta!!');

@@ -9,6 +9,10 @@ const UserScheme = new mongoose.Schema(
         age: {
             type: Number
         },
+        avatar: {
+            type: String,
+            default: 'https://img.freepik.com/foto-gratis/retrato-estudio-hombre-moreno-confianza_1187-5799.jpg?w=2000'
+        },
         email: {
             type: String,
             unique: true

@@ -14,14 +14,14 @@ const parseId = (id) => {
     return mongoose.Types.ObjectId(id)
 }
 
-/**
- * Parsear JSON pasando la data a parsear
- * @param {*} data 
- * @returns 
- */
-const parseJSON = (data) => {
-    return mongoose.Types.Array(data)
-}
+// /**
+//  * Parsear JSON pasando la data a parsear
+//  * @param {*} data 
+//  * @returns 
+//  */
+// const parseJSON = (data) => {
+//     return mongoose.Types.Array(data)
+// }
 
 /**
  * Obtener DATA de todos los usuarios
@@ -84,6 +84,7 @@ exports.createUser = async (req, res) => {
         const dataUsers = req.body
         const data = await userModel.insertMany(dataUsers, (error, docs) => { // Crear el documento en la db
             if(error) {
+                console.log({error});
                 res.send({ error: 'Error' }, 422)
             }
             res.send({ data: docs })

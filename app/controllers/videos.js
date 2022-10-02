@@ -48,7 +48,7 @@ exports.getFiles = async (req, res) => {
  * @param {*} res 
  */
 exports.uploadFile = async (req, res) => {
-    const { title, description} = req.body
+    const { title, description, chanel, visibility} = req.body
     const file = req.file
     console.log('file', file);
     
@@ -62,7 +62,9 @@ exports.uploadFile = async (req, res) => {
         console.log({result});
         const newVideo = new videoModel({
             title, 
-            description, 
+            description,
+            chanel,
+            visibility,
             videoURL: result.url,
             public_id: result.public_id
         })
@@ -73,6 +75,7 @@ exports.uploadFile = async (req, res) => {
             data: 'Archivo enviado'
         })
     } catch (error) {
+        console.log({error});
         handleHttpError(res, "ERROR_UPLOAD_FILE")   
     }
 }
