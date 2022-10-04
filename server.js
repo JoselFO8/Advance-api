@@ -1,10 +1,8 @@
-const cors = require("cors")
 require("dotenv").config()
-
+const cors = require("cors")
 const express = require('express')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
-
 const initDB = require('./config/db_mongo.js')
 
 // Initializations
@@ -33,6 +31,7 @@ app.use( // for parsing appication/x-www-form-urlencoded
 )
 app.use(express.json())
 app.use("/", require("./app/routes")) // Muestra index
+
 
 // Start the server
 app.listen(port, () => {

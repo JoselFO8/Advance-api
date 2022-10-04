@@ -40,6 +40,10 @@ const VideoScheme = new mongoose.Schema(
         public_id: {
             type: String
         },
+        // created_at: {
+        //     type: Date
+        //     // default: Date.now()
+        // }, 
     },
     {
         versionKey: false,  // deshabilitar el __v que envia mongo por defecto 
