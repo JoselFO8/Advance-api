@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 const { MONGOHOST, MONGOPASSWORD, MONGOPORT, MONGOUSER} = process.env
 const DB_URI_PROD = `mongodb://${{ MONGOUSER }}:${{ MONGOPASSWORD }}@${{ MONGOHOST }}:${{ MONGOPORT }}`
-const DB_URI = process.env.DB_URI_DEV || DB_URI_PROD 
+const DB_URI = DB_URI_PROD || process.env.DB_URI_DEV 
 
 
 // mongoose.connect('mongodb://localhost:27017/myapp'); DESDE la documentacion
