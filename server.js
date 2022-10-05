@@ -9,13 +9,15 @@ const initDB = require('./config/db_mongo.js')
 const app = express()
 
 // Settings
-const port = process.env.PORT || 3001
+const { MONGOPORT} = process.env
+const port = 3001 || MONGOPORT
 
 const whiteList = [
-    'http://localhost:4200'
+    'http://localhost:4200',
+    'https://video-tube-client.vercel.app/'
 ]
 
-// Midlewares
+// Midlewaresserver 
 app.use(cors({origin: whiteList})) // Para dar permisos a algunas URL's
 app.use(morgan('dev'));
 app.use( // for parsing json

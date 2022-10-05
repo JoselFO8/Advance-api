@@ -9,7 +9,9 @@ const authMiddleware = require('../middleware/session.js')
  * Ruta: /videos GET
  */
 router.get(
-    `/`, authMiddleware, controller.getFiles
+    `/`, 
+    // authMiddleware, 
+    controller.getFiles
 )
 
 /**
@@ -26,14 +28,18 @@ router.post(
  * Ruta /videos/:id GET
  */
 router.get(
-    `/:id`, authMiddleware, controller.getFileById
+    `/:id`, 
+    // authMiddleware, 
+    controller.getFileById
 )
 
 /**
  * Ruta /videos/:id/delete GET
  */
 router.get(
-    `/:id/delete`, authMiddleware, controller.deleteFileById
+    `/:id/delete`, 
+    authMiddleware, 
+    controller.deleteFileById
 )
 
 module.exports = router
