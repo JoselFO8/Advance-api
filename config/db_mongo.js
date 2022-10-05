@@ -1,7 +1,7 @@
 require("dotenv").config()
 const mongoose = require('mongoose')
 
-const { MONGOHOST, MONGOPASSWORD, MONGOPORT, MONGOUSER} = process.env
+const { MONGOHOST, MONGOPASSWORD, , MONGOUSER} = process.env
 const DB_URI_PROD = `mongodb://${{ MONGOUSER }}:${{ MONGOPASSWORD }}@${{ MONGOHOST }}:${{ MONGOPORT }}`
 const DB_URI = DB_URI_PROD || process.env.DB_URI_DEV 
 
@@ -11,7 +11,7 @@ const DB_URI = DB_URI_PROD || process.env.DB_URI_DEV
 
 module.exports = () => {
     const connect = () => {
-        // console.log("DESDE db_mongo PROD", process.env.DB_URI_PROD);
+        console.log("DESDE db_mongo PROD", process.env.DB_URI_PROD, "MONGOPORT", MONGOPORT);
         // console.log("DESDE db_mongo DEV", process.env.DB_URI_DEV);
         mongoose.connect(
             DB_URI,
