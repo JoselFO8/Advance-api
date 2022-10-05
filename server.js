@@ -9,8 +9,8 @@ const initDB = require('./config/db_mongo.js')
 const app = express()
 
 // Settings
-const { MONGOPORT} = process.env
-const port = MONGOPORT || 3001
+const { MONGO_PORT} = process.env
+const port = MONGO_PORT || 3001
 
 const whiteList = [
     'http://localhost:4200',

@@ -1,8 +1,8 @@
 require("dotenv").config()
 const mongoose = require('mongoose')
 
-const { MONGOHOST, MONGOPASSWORD, MONGOPORT, MONGOUSER} = process.env
-const DB_URI_PROD = `mongodb://${{ MONGOUSER }}:${{ MONGOPASSWORD }}@${{ MONGOHOST }}:${{ MONGOPORT }}`
+const { MONGO_HOST, MONGO_PASSWORD, MONGO_PORT, MONGO_USER} = process.env
+const DB_URI_PROD = `mongodb://${{ MONGO_USER }}:${{ MONGO_PASSWORD }}@${{ MONGO_HOST }}:${{ MONGO_PORT }}`
 const DB_URI = DB_URI_PROD || process.env.DB_URI_DEV 
 
 
