@@ -10,7 +10,8 @@ const app = express()
 
 // Settings
 const { MONGO_PORT} = process.env
-const port = MONGO_PORT || 3001
+// const port = MONGO_PORT || 3001
+const port = 3001
 
 const whiteList = [
     'http://localhost:4200',

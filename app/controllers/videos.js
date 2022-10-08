@@ -74,16 +74,13 @@ exports.uploadFile = async (req, res) => {
     }
 }
 
-exports.getFileById = (req, res) => {
+exports.getFileById = async (req, res) => {
     try {
-        videoModel.find(
-            {},
-            (error, docs) => {
-                res.send({
-                    docsJLF: docs
-                })
-            }
-        )   
+        const {id} = req.params
+        console.log({id});
+        const data = await videoModel.findById(id)
+        console.log({data});
+        res.send({video: data})    
     } catch (error) {
         handleHttpError(res, "ERROR_GET_FILE_BY_ID")
     }
