@@ -70,6 +70,7 @@ exports.uploadFile = async (req, res) => {
             data: 'Archivo enviado'
         })
     } catch (error) {
+        console.log(error);
         handleHttpError(res, "ERROR_UPLOAD_FILE")   
     }
 }
