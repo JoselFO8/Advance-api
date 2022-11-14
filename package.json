@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Backend Advance",
   "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
