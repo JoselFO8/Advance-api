@@ -18,7 +18,7 @@ const whiteList = [
 
 // Midlewaresserver 
 app.use(cors({origin: whiteList})) // Para dar permisos a algunas URL's
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use( // for parsing json
     bodyParser.json({
         limit: '20mb' // Limite de 20 megas por peticion
@@ -31,8 +31,11 @@ app.use( // for parsing appication/x-www-form-urlencoded
     })
 )
 app.use(express.json())
-app.use("/", require("./app/routes")) // Muestra index
+// app.use("/", require("./app/routes")) // Muestra index
 
+app.get("/", (req, res) => {
+    res.send("Pagina de inicio Prueba")
+})
 
 // Start the server
 app.listen(port, () => {

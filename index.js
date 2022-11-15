@@ -31,8 +31,11 @@ app.use( // for parsing appication/x-www-form-urlencoded
     })
 )
 app.use(express.json())
-app.use("/", require("./app/routes")) // Muestra index
+// app.use("/", require("./app/routes")) // Muestra index
 
+app.get("/", (req, res) => {
+    res.send("Pagina de inicio")
+})
 
 // Start the server
 app.listen(port, () => {
