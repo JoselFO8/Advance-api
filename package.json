@@ -1,12 +1,8 @@
 {
-  "name": "advance",
+  "name": "videotube",
   "version": "1.0.0",
-  "description": "Backend Advance",
+  "description": "Backend Video tube",
   "main": "index.js",
-  "type": "module",
-  "engines": {
-    "node": "14.x"
-  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
