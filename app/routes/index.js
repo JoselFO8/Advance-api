@@ -13,6 +13,10 @@ const removeExtension = (fileName) => {
 // const files = fs.readdirSync(PATH_ROUTES)
 // console.log({files}); // Muesra los archivos de rutas en este caso
 
+router.get('/', (req, res) => {
+    res.status(200).send('Conexion correcta!');
+});
+
 fs.readdirSync(PATH_ROUTES).filter((file) => {
     const name = removeExtension(file) // TODO users, items, uploads
     if(name !== 'index') {
