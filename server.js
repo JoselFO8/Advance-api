@@ -31,7 +31,8 @@ app.use( // for parsing json
 app.use(morgan('dev'));
 app.use(express.json())
 
-app.use(cors({origin: whiteList})) // Para dar permisos a algunas URL's
+// app.use(cors({origin: whiteList})) // Para dar permisos a algunas URL's
+app.use(cors()) // Para dar permisos a algunas URL's
 app.use("/", require("./app/routes")) // Muestra index
 
 
