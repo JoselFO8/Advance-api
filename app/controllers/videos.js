@@ -9,7 +9,8 @@ const cloudinary = require("cloudinary")
 
 // Multer - Subida de archivos
 const storage = multer.diskStorage({
-    destination: path.join(__dirname, 'storage/uploads'),
+    // destination: path.join(__dirname, 'storage/uploads'),
+    destination: process.env.PORT ? '/tmp/' : path.join(__dirname, 'storage/uploads'),
     filename: (req, file, cb) => { // El nombre sera el propiio del archivo + la fecha, para evitar que se reemplace
         cb(null, `${Date.now()}${path.extname(file.originalname)}`)
     }
